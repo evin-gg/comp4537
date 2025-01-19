@@ -261,8 +261,8 @@ class Ui {
 
     // create the landing page
     createIndex() {
-        this.buttons.createButton(GREEN, msg.reader, INDEX_DIV_ID, READ_LINK_ID, ButtonWidth, ButtonHeight);
-        this.buttons.createButton(GREEN, msg.writer, INDEX_DIV_ID, WRITE_LINK_ID, ButtonWidth, ButtonHeight);
+        this.buttons.createButton(GREEN, msg.read, INDEX_DIV_ID, READ_LINK_ID, ButtonWidth, ButtonHeight);
+        this.buttons.createButton(GREEN, msg.write, INDEX_DIV_ID, WRITE_LINK_ID, ButtonWidth, ButtonHeight);
 
         document.getElementById(READ_LINK_ID).addEventListener(CLICK, (event) => {
             window.location.href = READER_HTML;
