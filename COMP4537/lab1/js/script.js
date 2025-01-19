@@ -225,7 +225,7 @@ class Time {
     // Updates the time for a specific key (W or R) in the JSON
     static updateTime(index) {
         const currentTime = new Date().toLocaleTimeString();
-        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY_ARRAY, EMPTY_ARRAY];
+        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY, EMPTY];
         timeData[index] = currentTime;
         localStorage.setItem(TIME, JSON.stringify(timeData));
         return currentTime;
@@ -233,7 +233,7 @@ class Time {
 
     // gets the time from the local storage
     static getTime(index) {
-        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY_ARRAY, EMPTY_ARRAY];
+        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY, EMPTY];
         return timeData[index] || new Date().toLocaleTimeString();
     }
 
