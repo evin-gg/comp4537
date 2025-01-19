@@ -1,8 +1,8 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;  /* Full viewport height */
-    margin: 0;      /* Remove default margin */
+    height: 100vh;
+    margin: 0; 
 }
 
 #index {
@@ -13,43 +13,48 @@ body {
     gap: 20px;
 }
 
+
+#timeSlotW, #timeSlotR {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 10vh;
+    z-index: 10;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+/* chatgpt -> helped me make a functional layout */
 #mainReaderContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;  /* Allow this to take the remaining space */
-    overflow-y: auto;  /* Enable scrolling when content exceeds space */
+    flex-grow: 1;  
+    overflow-y: auto;  
     padding: 10px;
-    margin-bottom: 20vh; /* Prevent overlap with footer */
+    margin-bottom: 20vh; 
+    margin-top: 10vh;
 }
 
-/* Header - timeSlot */
-#timeSlotW {
-    padding: 1em;
-    text-align: center;
-    flex-shrink: 0;  /* Prevent shrinking */
-}
-
-#timeSlotR {
-    padding: 1em;
-    text-align: center;
-    flex-shrink: 0;  /* Prevent shrinking */
-}
-
-/* Main content area */
+/* chatgpt -> helped me make a functional layout */
 #mainWriterContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;  /* Allow this to take the remaining space */
-    overflow-y: auto;  /* Enable scrolling when content exceeds space */
+    flex-grow: 1;
+    overflow-y: auto;
     padding: 10px;
-    margin-bottom: 20vh; /* Prevent overlap with footer */
+    margin-bottom: 20vh; 
+    margin-top: 10vh;
 }
 
-/* Footer - bottomBar */
+/* chatgpt -> helped me make a proper footer  */
 #bottomBar {
     position: fixed;
     bottom: 0;
@@ -61,22 +66,22 @@ body {
     height: 20vh;
     z-index: 10;
     padding: 1em;
-    box-sizing: border-box; /* Ensure padding is included in height calculation */
+    box-sizing: border-box;
 }
 
 #notes {
     display: flex;
-    flex-direction: column;  /* Stacks the textareas vertically */
-    gap: 20px;  /* Adds spacing between each textarea */
-    align-items: center; /* Centers the textareas horizontally */
-    width: 100%;  /* Optional: Ensure #notes spans full width */
+    flex-direction: column;
+    gap: 20px;  
+    align-items: center; 
+    width: 100%;  
 }
 
-
+/* used chatgpt to help me figure out how to stop resizing */
 textarea {
     width: 300px;
-    margin: 0 auto;          /* This centers the textareas horizontally */
-    resize: none;            /* Disables resizing */
+    margin: 0 auto;
+    resize: none;
     margin-right: 10px;
     height: 60px;
 }

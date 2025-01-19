@@ -69,6 +69,7 @@ class Storage {
         Storage.noteCount--;
     }
 
+    // updates/adds a note
     static updateNote(index, note) {
         const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || EMPTY_ARRAY);
 
@@ -78,7 +79,7 @@ class Storage {
 }
 
 
-
+// manages writer ui
 class WriterDisplay {
     
     // Adds a new writer box with a text area and a remove button
@@ -101,6 +102,7 @@ class WriterDisplay {
     }
 
     // Function to create a writer box with textarea and remove button
+    // chatgpt -> helped me with the element creating aspects
     createWriterBox(initialValue = EMPTY) {
         const notes = Storage.readNotes();
 
@@ -128,7 +130,7 @@ class WriterDisplay {
         // Add event listener to write into localStorage when content changes
         textBox.addEventListener(INPUT, (event) => {
             Storage.updateNote(index, event.target.value);
-            Time.updateTime();
+            Time.updateTime(0);
             Time.displayTimeW();
         });
 
@@ -137,8 +139,8 @@ class WriterDisplay {
             this.removeNote(index);
             document.getElementById(index).remove();
             this.updateCurrent();
-            Time.updateTime();
-            Time.displayTimeW();
+            Time.updateTime(0);
+            Time.displayTimeW(0);
         });
 
         // Add the wrapper div to the "notes" container
@@ -162,7 +164,7 @@ class WriterDisplay {
 
 
 
-
+// manages reader ui
 class ReaderDisplay {
 
     constructor() {
@@ -170,6 +172,7 @@ class ReaderDisplay {
         this.getUpdatedNotes();
     }
 
+    // creates a read only box
     createDisplayBox(initialValue = EMPTY) {
         
         // Create a wrapper div for the textarea and button
@@ -195,6 +198,7 @@ class ReaderDisplay {
         notes.forEach((note) => {
             this.createDisplayBox(note)
         });
+        Time.updateTime(1);
         Time.displayTimeR();
     }
 
@@ -206,6 +210,7 @@ class ReaderDisplay {
     // starts the storage listener
     startStorageListener() {
         Time.displayTimeR();
+        console.log("satrted again");
         window.addEventListener(STORAGE, (event) => {
             this.getUpdatedNotes();
         });
@@ -217,31 +222,35 @@ class ReaderDisplay {
 // got chatgpt to help with the date object
 class Time {
 
-    // updates in local storage
-    static updateTime() {
+    // Updates the time for a specific key (W or R) in the JSON
+    static updateTime(index) {
         const currentTime = new Date().toLocaleTimeString();
-        localStorage.setItem(TIME, currentTime);
+        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY_ARRAY, EMPTY_ARRAY];
+        timeData[index] = currentTime;
+        localStorage.setItem(TIME, JSON.stringify(timeData));
         return currentTime;
     }
 
-    // Retrieves the current stored time
-    static getTime() {
-        return localStorage.getItem(TIME) || new Date().toLocaleTimeString();
+    // gets the time from the local storage
+    static getTime(index) {
+        const timeData = JSON.parse(localStorage.getItem(TIME)) || [EMPTY_ARRAY, EMPTY_ARRAY];
+        return timeData[index] || new Date().toLocaleTimeString();
     }
 
-    // display for the writer page time
+    // displays writer time
     static displayTimeW() {
-        const currentTime = this.getTime();
+        const currentTime = this.getTime(0);
         document.getElementById(TIME_W).innerHTML = msg.lastStored + currentTime;
     }
 
-    // display for the reader page time
+    // displays reader time
     static displayTimeR() {
-        const currentTime = this.getTime();
+        const currentTime = this.getTime(1);
         document.getElementById(TIME_R).innerHTML = msg.lastUpdated + currentTime;
     }
 }
 
+// main ui driverclass 
 class Ui {
     constructor(page) {
         this.page = page;
@@ -291,8 +300,8 @@ class Ui {
 
         document.getElementById(ADD_ITEM_BUTTON_ID).addEventListener(CLICK, () => {
             this.writerDisplay.addWriterBox();
-            Time.updateTime();
-            Time.displayTimeW();
+            Time.updateTime(0);
+            Time.displayTimeW(0);
         });
 
         document.getElementById(INDEX_LINK_ID).addEventListener(CLICK, function () {
@@ -302,7 +311,7 @@ class Ui {
     }
 }
 
-
+// starts the ui
 document.addEventListener(DOMLOAD, () => {
     const ui = new Ui(window.location.pathname);
     ui.init();
