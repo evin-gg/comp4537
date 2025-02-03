@@ -18,51 +18,6 @@ const fname = "file.txt";
 const newline = "\n";
 const filepath = path.join(__dirname, fname);
 
-// http.createServer(function (req, res) {
-
-//     const parsedUrl = url.parse(req.url, true);
-
-//     const propertyUrl = parsedUrl.query;
-    
-
-//     if (parsedUrl.pathname === "/COMP4537/labs/3/getDate/") {
-//         const name = propertyUrl.name || "Guest";
-//         const message = text.msg.greeting.replace("%1", name);
-//         res.writeHead(200, {'Content-Type': 'text/html'});
-//         res.write(text.msg.open_tag + message + dt.getDate() + text.msg.close_tag);
-//         res.end();
-//     }
-
-//     else if (parsedUrl.pathname === "/COMP4537/labs/3/writeFile/") {
-//         const text = propertyUrl.text + "\n";
-
-//         if (text === "\n") {
-//             return;
-//         }
-
-//         fs.appendFile(filepath, text, (err) => {
-//             if (err) throw err;
-//             console.log('The "data to append" was appended to file!');
-//         });
-
-//         res.end();
-//     }
-
-//     else if (parsedUrl.pathname === "/COMP4537/labs/3/readFile/file.txt") {
-//         fs.readFile(filepath, "utf8", (err, data) => {
-//             res.writeHead(200, { "Content-Type": "text/plain" });
-//             res.end(data || "");
-//         });
-//     }
-
-//     else {
-//         res.writeHead(404, {"Content-Type": "text/html"});
-//         res.end("<h1>404 Not Found</h1>");
-//     }
-// }).listen(8888);
-
-
-
 // responsible for readFile page
 class ReadingPage {
 
