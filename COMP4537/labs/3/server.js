@@ -63,7 +63,7 @@ const filepath = path.join(__dirname, fname);
 
 
 
-
+// responsible for readFile page
 class ReadingPage {
 
     readRespond(res) {
@@ -74,6 +74,7 @@ class ReadingPage {
     }
 }
 
+// responsible for writeFile page
 class WritingPage {
 
     modifyFile(text) {
@@ -83,6 +84,7 @@ class WritingPage {
     }
 }
 
+// responsible for getDate page
 class DatePage {
     constructor(req) {
         this.parsedUrl = url.parse(req.url, true);
@@ -98,6 +100,7 @@ class DatePage {
     }
 }
 
+// responsible for handling server related actions
 class Server {
 
     write404(res) {
@@ -106,7 +109,7 @@ class Server {
     }
 
     startServer() {
-        http.createServer(function (req, res) {
+        http.createServer((req, res) => {
 
             const parsedUrl = url.parse(req.url, true);
             const propertyUrl = parsedUrl.query;
