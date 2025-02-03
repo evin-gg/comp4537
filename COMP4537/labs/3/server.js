@@ -16,6 +16,8 @@ const text_html = "text/html";
 const delimiter = "%1";
 const fname = "file.txt";
 const newline = "\n";
+
+// chatgpt helped me figure out how to use path
 const filepath = path.join(__dirname, fname);
 
 // responsible for readFile page
@@ -56,6 +58,7 @@ class DatePage {
 }
 
 // responsible for handling server related actions
+// chatgpt - helped me make skeleton code for the routing
 class Server {
 
     write404(res) {
