@@ -2,10 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet", href="./css/style.css">
+    <script src="./scripts/search.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
 </head>
 <body>
-    
+
+    <form id="submitForm">
+        <label for="word">Word</label> 
+        <input id="word">
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <textarea readonly id="responseBox"></textarea>
 </body>
 </html>
