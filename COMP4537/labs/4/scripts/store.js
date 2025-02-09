@@ -1,6 +1,7 @@
 
 
 const xhttp = new XMLHttpRequest();
+const validate = new Validation();
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("submitForm");
@@ -25,3 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
         xhttp.send(data)
     })
 })
+
+
