@@ -1,29 +1,29 @@
 const xhttp = new XMLHttpRequest();
 
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("submitForm");
+document.addEventListener(CONTENT_LOADED, () => {
+    const ui = new Ui();
 
-    form.addEventListener("submit", (event) => {
+    ui.buildSearch();
+    const form = document.getElementById(SUBMIT_FORM);
+
+    form.addEventListener(SUBMIT, (event) => {
         event.preventDefault();
 
-        const word = document.getElementById("word").value;
+        const word = document.getElementById(WORD).value;
 
         xhttp.onreadystatechange = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
                 const response = JSON.parse(xhttp.responseText);
 
                 if (response.definition == null) {
-                    alert("Request# 103, word \'" + word + "\' not found!")
+                    alert(ERR_103 + word + NOT_FOUND);
                 }
-                document.getElementById("responseBox").innerHTML = response.definition;
+                document.getElementById(RESP_BOX).innerHTML = response.definition;
             }
         }
 
-        xhttp.open("GET", "https://4537api.banunu.dev/labs/4/definitions?word=" + word, true);
-        xhttp.setRequestHeader("Content-Type", "application/json");
-
-        // const data = JSON.stringify({word: word});
-        // console.log(data);
+        xhttp.open(GET, API_LINK + word, true);
+        xhttp.setRequestHeader(CONTENT_TYPE, APP_JSON);
         xhttp.send();
 
     });
