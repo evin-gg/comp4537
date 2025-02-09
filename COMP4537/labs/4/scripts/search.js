@@ -11,16 +11,20 @@ document.addEventListener("DOMContentLoaded", () => {
         xhttp.onreadystatechange = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
                 const response = JSON.parse(xhttp.responseText);
-                document.getElementById("responseBox").innerText(response.definition);
+
+                if (response.definition == null) {
+                    alert("Request# 103, word \'" + word + "\' not found!")
+                }
+                document.getElementById("responseBox").innerHTML = response.definition;
             }
         }
 
-        xhttp.open("POST", "https://4537api.banunu.dev/labs/4/definitions/", true);
+        xhttp.open("GET", "https://4537api.banunu.dev/labs/4/definitions?word=" + word, true);
         xhttp.setRequestHeader("Content-Type", "application/json");
 
-        const data = JSON.stringify({word: word});
-        console.log(data);
-        xhttp.send(data);
+        // const data = JSON.stringify({word: word});
+        // console.log(data);
+        xhttp.send();
 
     });
 });
