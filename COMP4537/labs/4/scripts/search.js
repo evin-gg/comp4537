@@ -9,7 +9,7 @@ document.addEventListener(CONTENT_LOADED, () => {
     form.addEventListener(SUBMIT, (event) => {
         event.preventDefault();
 
-        const word = document.getElementById(WORD).value;
+        let word = document.getElementById(WORD).value;
 
         xhttp.onreadystatechange = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
@@ -21,8 +21,8 @@ document.addEventListener(CONTENT_LOADED, () => {
                 document.getElementById(RESP_BOX).innerHTML = response.definition;
             }
         }
-
-        xhttp.open(GET, API_LINK + word, true);
+        console.log(word.toLowerCase());
+        xhttp.open(GET, API_LINK + word.toLowerCase(), true);
         xhttp.setRequestHeader(CONTENT_TYPE, APP_JSON);
         xhttp.send();
 
