@@ -21,7 +21,6 @@ document.addEventListener(CONTENT_LOADED, () => {
                 document.getElementById(RESP_BOX).innerHTML = response.definition;
             }
         }
-        console.log(word.toLowerCase());
         xhttp.open(GET, API_LINK + word.toLowerCase(), true);
         xhttp.setRequestHeader(CONTENT_TYPE, APP_JSON);
         xhttp.send();
