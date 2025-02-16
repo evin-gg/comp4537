@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("sql-form").addEventListener("submit", (event) => {
         event.preventDefault();
         let command = document.getElementById("sql-in").value.trim();
-        if(command.toLowerCase().includes("insert"))
+
+        if(command.toLowerCase().startsWith("insert"))
         {
             fetch("INSERT LINK HERE", {
                 method: "POST",
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
 
-        else if(command.toLowerCase().includes("select"))
+        else if(command.toLowerCase().startsWith("select"))
         {
             fetch("INSERT LINK HERE", {
                 method: "GET",
