@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.json())
         .then(data => {
-            alert(data);
+            alert(JSON.stringify(data, null, 2));
         })
         .catch(error => {
             alert(error);
