@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("response").innerHTML = data.error;
                 } else {
                     const rows = data.map(row => {
-                        return `div${Object.values(row).join(', ')}</div>`;
+                        return `<div>${Object.values(row).join(', ')}</div>`;
                     }).join('');
                     document.getElementById("response").innerHTML = rows;
                 }
