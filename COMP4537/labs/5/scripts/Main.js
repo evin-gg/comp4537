@@ -2,20 +2,21 @@ const ui = new Ui();
 
 document.addEventListener("DOMContentLoaded", () => {
     ui.build();
+    const api = 'https://4537api.banunu.dev/labs/5/sql'
 
     document.getElementById("ins-rows").addEventListener("click", () => {
-        fetch("INSERT LINK HERE", {
+        fetch(api, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(personData)
+            body: JSON.stringify({ query: personData })
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
             alert(data);
         })
         .catch(error => {
             alert(error);
-        }); 
+        });
     });
 
     document.getElementById("sql-form").addEventListener("submit", (event) => {
@@ -24,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(command.toLowerCase().startsWith("insert"))
         {
-            fetch("INSERT LINK HERE", {
+            fetch(api, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({query: command})
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
                 document.getElementById("response").innerHTML = data;
             })
@@ -40,11 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         else if(command.toLowerCase().startsWith("select"))
         {
-            fetch("INSERT LINK HERE", {
+            fetch(api, {
                 method: "GET",
                 headers: {"Content-Type": "application/json"}
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
                 document.getElementById("response").innerHTML = data;
             })

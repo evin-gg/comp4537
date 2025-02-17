@@ -5,9 +5,10 @@ const msg = {
     Response: "Response"
 }
 
-const personData = [
-    {name: "Sara Brown", date: "1901-01-01"},
-    {name: "John Smith", date: "1941-01-01"},
-    {name: "Jack Ma", date: "1961-01-30"},
-    {name: "Elon Musk", date: "1999-01-01"}
-]
+const personData = `
+INSERT INTO patient (name, dateOfBirth) VALUES
+('Sara Brown', '1901-01-01'),
+('John Smith', '1941-01-01'),
+('Jack Ma', '1961-01-30'),
+('Elon Musk', '1999-01-01');
+`;
