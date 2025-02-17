@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("response").innerHTML = data;
+                document.getElementById("response").innerHTML = JSON.stringify(data, null, 2);
             })
             .catch(error => {
                 document.getElementById("response").innerHTML = error;
@@ -47,7 +47,14 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("response").innerHTML = data;
+                if (data.error) {
+                    document.getElementById("response").innerHTML = data.error;
+                } else {
+                    const rows = data.map(row => {
+                        return `div${Object.values(row).join(', ')}</div>`;
+                    }).join('');
+                    document.getElementById("response").innerHTML = rows;
+                }
             })
             .catch(error => {
                 document.getElementById("response").innerHTML = error;
