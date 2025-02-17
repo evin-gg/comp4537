@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         else if(command.toLowerCase().startsWith("select"))
         {
-            fetch(api, {
+            fetch(api + '?query=' + encodeURIComponent(command), {
                 method: "GET",
                 headers: {"Content-Type": "application/json"}
             })
